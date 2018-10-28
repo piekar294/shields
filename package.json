@@ -122,6 +122,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "7.0.0",
     "@babel/register": "7.0.0",
     "@mapbox/react-click-to-select": "^2.2.0",
     "almost-equal": "^1.1.0",
@@ -138,6 +139,8 @@
     "danger": "^4.0.1",
     "danger-plugin-no-test-shortcuts": "^2.0.0",
     "dejavu-fonts-ttf": "^2.37.3",
+    "enzyme": "3.7.0",
+    "enzyme-adapter-react-16": "1.6.0",
     "eol": "^0.9.1",
     "eslint": "^5.0.1",
     "eslint-config-prettier": "^3.0.1",
@@ -197,6 +200,7 @@
   },
   "babel": {
     "presets": [
+      "@babel/preset-env",
       "next/babel"
     ],
     "plugins": [
@@ -206,7 +210,7 @@
     "env": {
       "mocha": {
         "presets": [
-          "@babel/preset-env"
+          "@babel/preset-react"
         ]
       }
     }
