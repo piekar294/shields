@@ -9,7 +9,7 @@ const { expect } = chai
 Enzyme.configure({ adapter: new Adapter() })
 
 describe('markup modal', function() {
-  describe('constructor', function() {
+  describe('constructor()', function() {
     it('should not override default state when example prop is empty', function() {
       // given
       const props = {
