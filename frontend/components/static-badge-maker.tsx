@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent } from 'react'
 import { staticBadgeUrl } from '../../core/badge-urls/make-badge-url'
-import { InlineInput } from './common'
+import {Badge, InlineInput} from './common'
 
 type StateKey = 'label' | 'message' | 'color'
 type State = Record<StateKey, string>
@@ -23,15 +23,29 @@ export default function StaticBadgeMaker({ baseUrl = document.location.href }) {
     })
   }
 
-  function onSubmit(e: React.FormEvent) {
-    e.preventDefault()
+  function renderBadge() {
+      const { label, message, color } = values
 
-    const { label, message, color } = values
-    window.location.href = staticBadgeUrl({ baseUrl, label, message, color })
+      const src = isValid ?
+          staticBadgeUrl({
+              baseUrl,
+              label,
+              message,
+              color,
+          })
+          : staticBadgeUrl({
+              baseUrl,
+              label: 'preview',
+              message: 'some parameters missing',
+          })
+
+      return <p>
+          <Badge alt="preview badge" display="block" src={src}/>
+      </p>
   }
 
   return (
-    <form onSubmit={onSubmit}>
+      <div>
       <InlineInput
         name="label"
         onChange={onChange}
@@ -61,7 +75,8 @@ export default function StaticBadgeMaker({ baseUrl = document.location.href }) {
         <option value="lightgrey" />
         <option value="blue" />
       </datalist>
-      <button disabled={!isValid}>Make Badge</button>
-    </form>
+
+      {renderBadge()}
+      </div>
   )
 }
